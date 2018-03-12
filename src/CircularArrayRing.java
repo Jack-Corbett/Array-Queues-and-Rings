@@ -1,5 +1,7 @@
 import java.util.AbstractCollection;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import static java.lang.StrictMath.floorMod;
 
 public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<E> {
@@ -52,11 +54,32 @@ public class CircularArrayRing<E> extends AbstractCollection<E> implements Ring<
 
     @Override
     public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            private int itCount;
 
+            {
+                itCount = 0;
+            }
 
+            @Override
+            public boolean hasNext() {
+                return size() == array.length && itCount < array.length - 1 || itCount < size();
+            }
 
-        return null;
+            @Override
+            public E next() {
+                if(hasNext()) {
+                    return get(itCount++);
+                } else {
+                    throw new NoSuchElementException();
+                }
+            }
 
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
     }
 
     @Override

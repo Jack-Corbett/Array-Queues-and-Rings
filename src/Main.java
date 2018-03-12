@@ -1,14 +1,18 @@
+import java.util.Iterator;
 
 public class Main {
 
     public static void main(String[] args) {
-        Ring<Integer> ring = new CircularArrayRing<Integer>();
+        Ring<Integer> ring = new CircularArrayRing<>();
 
-        for(int i=0; i<20; ++i) {
+        for(int i=0; i<1; ++i) {
             ring.add(i);
         }
 
+        Iterator<Integer> it = ring.iterator();
 
-        System.out.println(ring.get(11));
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
     }
 }
