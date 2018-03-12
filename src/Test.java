@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class Main {
+public class Test {
 
     public static void main(String[] args) {
         Ring<Integer> ring = new CircularArrayRing<>();
